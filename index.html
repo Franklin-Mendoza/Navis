@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Navidad, Pancracia!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a1f15 0%, #051009 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Fondo animado */
+        #magicBackground {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Pantalla de bienvenida - ¡ESPECTACULAR! */
+        .welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #8B0000 0%, #006400 50%, #0a1f15 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: transform 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            overflow: hidden;
+        }
+
+        .welcome-screen::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ffd700" d="M50,5 L60,40 L95,40 L65,60 L75,95 L50,75 L25,95 L35,60 L5,40 L40,40 Z"/></svg>') repeat;
+            opacity: 0.1;
+            animation: rotateStars 30s linear infinite;
+        }
+
+        @keyframes rotateStars {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .welcome-content {
+            text-align: center;
+            padding: 60px 40px;
+            background: rgba(10, 31, 21, 0.85);
+            border-radius: 30px;
+            border: 5px solid gold;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 
+                0 0 80px rgba(255, 215, 0, 0.7),
+                0 20px 50px rgba(0, 0, 0, 0.6),
+                inset 0 0 40px rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 2;
+            animation: welcomePulse 3s infinite alternate;
+        }
+
+        @keyframes welcomePulse {
+            0% { 
+                box-shadow: 0 0 80px rgba(255, 215, 0, 0.7), 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 0 40px rgba(255, 255, 255, 0.1); 
+                transform: scale(1);
+            }
+            100% { 
+                box-shadow: 0 0 120px rgba(255, 215, 0, 0.9), 0 30px 70px rgba(0, 0, 0, 0.8), inset 0 0 60px rgba(255, 255, 255, 0.2); 
+                transform: scale(1.02);
+            }
+        }
+
+        .welcome-title {
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 5rem;
+            color: gold;
+            margin-bottom: 25px;
+            text-shadow: 
+                3px 3px 0 #8B0000,
+                6px 6px 0 rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+            animation: titleFloat 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleFloat {
+            0% { transform: translateY(0) rotate(-1deg); }
+            100% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+        .welcome-subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: white;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            animation: subtitleFloat 5s ease-in-out infinite alternate;
+        }
+
+        @keyframes subtitleFloat {
+            0% { transform: translateY(0); opacity: 0.9; }
+            100% { transform: translateY(-15px); opacity: 1; }
+        }
+
+        .open-gift-btn {
+            background: linear-gradient(45deg, #B22222, #8B0000, #B22222);
+            background-size: 200% 100%;
+            color: white;
+            border: none;
+            padding: 25px 60px;
+            font-size: 2.2rem;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.4s;
+            margin-top: 30px;
+            box-shadow: 
+                0 15px 30px rgba(0, 0, 0, 0.4),
+                0 0 40px rgba(255, 215, 0, 0.5);
+            font-family: 'Mountains of Christmas', cursive;
+            letter-spacing: 3px;
+            position: relative;
+            overflow: hidden;
+            animation: buttonGlow 2s infinite alternate;
+        }
+
+        @keyframes buttonGlow {
+            0% { box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 40px rgba(255, 215, 0, 0.5); }
+            100% { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 60px rgba(255, 215, 0, 0.7); }
+        }
+
+        .open-gift-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .open-gift-btn:hover::before {
+            left: 100%;
+        }
+
+        .open-gift-btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            background-position: 100% 0;
+        }
+
+        .instruction {
+            margin-top: 30px;
+            font-size: 1.5rem;
+            color: gold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        /* Contenido principal */
+        .main-content {
+            display: none;
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+            animation: contentAppear 1.5s;
+        }
+
+        @keyframes contentAppear {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Árbol interactivo */
+        .tree-section {
+            text-align: center;
+            margin: 40px 0 80px 0;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 25px;
+            border: 3px solid rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.5s;
+        }
+
+        .tree-section:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 215, 0, 0.6);
+            transform: translateY(-10px);
+        }
+
+        .tree-container {
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.5s;
+            margin-bottom: 30px;
+        }
+
+        .tree-container:hover {
+            transform: scale(1.15);
+        }
+
+        .tree {
+            font-size: 12rem;
+            color: #228B22;
+            text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.7);
+            position: relative;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+        }
+
+        .tree-star {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 6rem;
+            color: gold;
+            text-shadow: 0 0 40px gold;
+            animation: starTwinkle 1s infinite alternate;
+            z-index: 2;
+        }
+
+        @keyframes starTwinkle {
+            0% { opacity: 0.7; transform: translateX(-50%) scale(1); text-shadow: 0 0 40px gold; }
+            100% { opacity: 1; transform: translateX(-50%) scale(1.2); text-shadow: 0 0 60px gold, 0 0 80px gold; }
+        }
+
+        .tree-instruction {
+            font-size: 1.8rem;
+            color: gold;
+            margin-top: 20px;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Luces del árbol */
+        .tree-light {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            box-shadow: 0 0 15px;
+            animation: lightColorChange 3s infinite alternate;
+            z-index: 1;
+        }
+
+        @keyframes lightColorChange {
+            0% { background-color: #ff0000; box-shadow: 0 0 20px #ff0000; }
+            25% { background-color: #00ff00; box-shadow: 0 0 20px #00ff00; }
+            50% { background-color: #ffff00; box-shadow: 0 0 20px #ffff00; }
+            75% { background-color: #ff00ff; box-shadow: 0 0 20px #ff00ff; }
+            100% { background-color: #00ffff; box-shadow: 0 0 20px #00ffff; }
+        }
+
+        /* Regalo especial - ¡TODO EL CONTENIDO AQUÍ! */
+        .gift-section {
+            text-align: center;
+            margin: 40px 0 60px 0;
+            padding: 50px;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.9), rgba(0, 100, 0, 0.9));
+            border-radius: 25px;
+            border: 4px solid gold;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.5),
+                0 0 50px rgba(255, 215, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+        }
+
+        .gift-container {
+            display: inline-block;
+            cursor: pointer;
+            transition: transform 0.5s;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .gift-container:hover {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .gift {
+            font-size: 10rem;
+            color: #B22222;
+            text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.7);
+            position: relative;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+        }
+
+        .gift-bow {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 4rem;
+            color: gold;
+            text-shadow: 0 0 20px gold;
+            z-index: 2;
+        }
+
+        .gift-instruction {
+            font-size: 1.8rem;
+            color: gold;
+            margin-top: 20px;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Mensaje del regalo - ¡TODO EL CONTENIDO AQUÍ! */
+        .gift-message {
+            display: none;
+            background: rgba(255, 215, 0, 0.95);
+            color: #006400;
+            padding: 60px 50px;
+            border-radius: 20px;
+            margin-top: 40px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            line-height: 1.8;
+            border: 3px solid #8B0000;
+            position: relative;
+            z-index: 1;
+            animation: messageAppear 1s;
+            text-align: left;
+        }
+
+        @keyframes messageAppear {
+            0% { opacity: 0; transform: translateY(30px) scale(0.9); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .gift-sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        /* Estilos específicos para el mensaje del regalo */
+        .message-header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #8B0000;
+            padding-bottom: 25px;
+        }
+
+        .message-title {
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 3.5rem;
+            color: #8B0000;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0 rgba(255, 215, 0, 0.3);
+        }
+
+        .message-saludo {
+            font-size: 2rem;
+            color: #8B0000;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .message-content {
+            font-size: 1.8rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #006400;
+            text-align: justify;
+        }
+
+        .message-highlight {
+            color: #8B0000;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 35px 0;
+            padding: 20px;
+            background: rgba(139, 0, 0, 0.1);
+            border-radius: 15px;
+            border-left: 5px solid #8B0000;
+            border-right: 5px solid #8B0000;
+            animation: highlightPulse 2s infinite alternate;
+        }
+
+        @keyframes highlightPulse {
+            0% { transform: scale(1); box-shadow: 0 5px 15px rgba(139, 0, 0, 0.2); }
+            100% { transform: scale(1.02); box-shadow: 0 8px 25px rgba(139, 0, 0, 0.3); }
+        }
+
+        .message-footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #8B0000;
+        }
+
+        .final-message {
+            font-size: 2.2rem;
+            color: #8B0000;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        .signature {
+            font-size: 2rem;
+            color: #006400;
+            font-family: 'Dancing Script', cursive;
+            margin-top: 30px;
+        }
+
+        /* Efectos especiales del regalo */
+        .gift-effects {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Mensaje final mínimo */
+        .closing-section {
+            text-align: center;
+            padding: 30px;
+            margin-top: 30px;
+            opacity: 0.8;
+            transition: all 0.5s;
+        }
+
+        .closing-section:hover {
+            opacity: 1;
+            transform: translateY(-5px);
+        }
+
+        .closing-text {
+            font-size: 1.6rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .welcome-title {
+                font-size: 3.5rem;
+            }
+
+            .welcome-subtitle {
+                font-size: 2.2rem;
+            }
+
+            .open-gift-btn {
+                padding: 20px 40px;
+                font-size: 1.8rem;
+            }
+
+            .message-title {
+                font-size: 2.8rem;
+            }
+
+            .message-saludo {
+                font-size: 1.6rem;
+            }
+
+            .message-content, .message-highlight {
+                font-size: 1.4rem;
+            }
+
+            .tree {
+                font-size: 8rem;
+            }
+
+            .tree-star {
+                font-size: 4rem;
+                top: -35px;
+            }
+
+            .gift {
+                font-size: 7rem;
+            }
+
+            .final-message {
+                font-size: 1.8rem;
+            }
+
+            .signature {
+                font-size: 1.6rem;
+            }
+
+            .gift-section {
+                padding: 30px 20px;
+            }
+
+            .gift-message {
+                padding: 40px 25px;
+            }
+
+            .closing-section {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Audio oculto que se reproduce automáticamente -->
+    <audio id="navidadMusic" autoplay loop volume="1" style="display: none;">
+        <source src="Music/Burro.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <!-- Fondo mágico -->
+    <canvas id="magicBackground"></canvas>
+
+    <!-- Pantalla de bienvenida ESPECTACULAR -->
+    <div class="welcome-screen" id="welcomeScreen">
+        <div class="welcome-content">
+            <h1 class="welcome-title">¡FELIZ NAVIDAD, PANCRACIA!</h1>
+            <p class="welcome-subtitle">Una sorpresa mágica especialmente para ti</p>
+            <button class="open-gift-btn" id="openGiftBtn">
+                <i class="fas fa-gift"></i> HAZ CLIC PARA TU REGALO ESPECIAL
+            </button>
+            <p class="instruction">¡Descubre el mensaje navideño creado solo para ti!</p>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content" id="mainContent">
+        <!-- Árbol interactivo -->
+        <div class="tree-section">
+            <h2 class="message-title">¡Enciende el Árbol Navideño!</h2>
+            <div class="tree-container" id="treeContainer">
+                <div class="tree-star">★</div>
+                <div class="tree">🎄</div>
+                <div class="tree-lights" id="treeLights"></div>
+            </div>
+            <p class="tree-instruction">Haz clic en el árbol para encender las luces mágicas</p>
+        </div>
+
+        <!-- Regalo especial - ¡TODO EL CONTENIDO AQUÍ! -->
+        <div class="gift-section">
+            <h2 class="message-title" style="color: gold;">Tu Regalo Especial de Navidad</h2>
+            <div class="gift-container" id="giftContainer">
+                <div class="gift-bow">🎀</div>
+                <div class="gift">🎁</div>
+                <div class="gift-sparkles" id="giftSparkles"></div>
+                <div class="gift-effects" id="giftEffects"></div>
+            </div>
+            <p class="gift-instruction">¡Haz clic para abrir tu regalo y ver el mensaje especial!</p>
+
+            <!-- Mensaje dentro del regalo - ¡TODO EL CONTENIDO AQUÍ! -->
+            <div class="gift-message" id="giftMessage">
+                <div>
+                    <h2 class="message-title">¡PARA PANCRACIA, LA LOCA MÁS LOCA DEL UNIVERSO! 🤪🌌</h2>
+                    <p class="final-message">
+                        ¡FELIZ NAVIDAD, REINA DE LA LOCURA🎄💥
+                    </p>
+
+                    <div style="margin-top: 40px; padding: 20px; background: rgba(255, 50, 50, 0.15); border: 3px dashed #ff6b6b; border-radius: 15px; font-family: 'Comic Sans MS', cursive;">
+                        <p style="font-size: 1.7rem; color: #d63384; margin-bottom: 15px;">
+                            ¡Te escribo esto entre risas, nervios y un poquito de miedo! 😱
+                        </p>
+                        
+                        <p style="font-size: 1.6rem; color: #e74c3c; font-style: italic; margin-bottom: 15px;">
+                            Porque si tu marido lee esto… ¡de seguro se ira donde la vecina! 🏃‍
+                        </p>
+
+                        <p style="font-size: 1.5rem; color: #2980b9; margin-bottom: 10px;">
+                            Pero es que ¡NO PODÍA NO DECIRTE FELIZ NAVIDAD!
+                        </p>
+                    </div>
+
+                    <p class="signature" style="margin-top: 30px; font-size: 1.55rem; line-height: 1.7; color: #2c3e50;">
+                        🎅 ¡Que esta Navidad te llene de esperanza, alegría y abrazos de los buenos!<br>
+                        Sí, este año estuvo difícil… pero lo importante es que NO TE RENDISTE.<br>
+                        Disfruta cada momento con tu familia, hasta los más locos<br>
+                        porque en Navidad y todos los dias siempre ellos estarán ahí para apoyarte.<br><br>
+                        Y yo tambien siempre te estare apoyando.<br>
+                        ¡Sigue adelante, Pancracia! Eres fuerte, vales mucho… y no estás sola. 💪❤️<br><br>
+                        Con un abrazo de oso goloso…<br>
+                        Te deseo una FELIZ NAVIDAD!!...
+                        — Atte<br>Tu "patrón/jefe/amo"… ya sabes quién 👀<br>
+                        <b>Vlady</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensaje final mínimo -->
+        <div class="closing-section">
+            <p class="closing-text">Que el espíritu de la Navidad te acompañe hoy y siempre</p>
+            <p class="closing-text">¡Felices fiestas, Pancracia!</p>
+        </div>
+    </div>
+
+    <script>
+        // Elementos del DOM
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        const mainContent = document.getElementById('mainContent');
+        const openGiftBtn = document.getElementById('openGiftBtn');
+        const treeContainer = document.getElementById('treeContainer');
+        const treeLights = document.getElementById('treeLights');
+        const giftContainer = document.getElementById('giftContainer');
+        const giftMessage = document.getElementById('giftMessage');
+        const giftSparkles = document.getElementById('giftSparkles');
+        const giftEffects = document.getElementById('giftEffects');
+        const magicCanvas = document.getElementById('magicBackground');
+        const ctx = magicCanvas.getContext('2d');
+
+        // Elemento de audio
+        const navidadMusic = document.getElementById('navidadMusic');
+
+        // Variables para animaciones
+        let particles = [];
+        let treeLit = false;
+        let giftOpened = false;
+        let lights = [];
+
+        // Función para iniciar la música automáticamente
+        function startMusic() {
+            // Configurar volumen al máximo
+            navidadMusic.volume = 1.0;
+            
+            // Intentar reproducir automáticamente
+            navidadMusic.play().then(() => {
+                console.log("🎵 Música navideña reproduciéndose al 100% de volumen");
+            }).catch(error => {
+                // Si hay error de autoplay, intentar reproducir al primer clic
+                console.log("Esperando interacción del usuario para reproducir música...");
+                document.addEventListener('click', function startOnClick() {
+                    navidadMusic.play();
+                    console.log("🎵 Música iniciada después del clic del usuario");
+                    document.removeEventListener('click', startOnClick);
+                }, { once: true });
+            });
+        }
+
+        // Ajustar tamaño del canvas
+        function resizeCanvas() {
+            magicCanvas.width = window.innerWidth;
+            magicCanvas.height = window.innerHeight;
+        }
+
+        // Crear partículas mágicas para el fondo
+        function createParticles() {
+            particles = [];
+            const particleCount = Math.min(200, Math.floor(window.innerWidth / 10));
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * magicCanvas.width,
+                    y: Math.random() * magicCanvas.height,
+                    size: Math.random() * 4 + 1,
+                    speedX: Math.random() * 1 - 0.5,
+                    speedY: Math.random() * 1 - 0.5,
+                    color: i % 4 === 0 ? '#ff0000' : i % 4 === 1 ? '#00ff00' : i % 4 === 2 ? '#ffff00' : '#ffd700',
+                    opacity: Math.random() * 0.5 + 0.2,
+                    twinkleSpeed: Math.random() * 0.03 + 0.01
+                });
+            }
+        }
+
+        // Dibujar partículas en el fondo
+        function drawParticles() {
+            ctx.clearRect(0, 0, magicCanvas.width, magicCanvas.height);
+
+            // Fondo con gradiente
+            const gradient = ctx.createRadialGradient(
+                magicCanvas.width / 2, magicCanvas.height / 2, 0,
+                magicCanvas.width / 2, magicCanvas.height / 2, Math.max(magicCanvas.width, magicCanvas.height)
+            );
+            gradient.addColorStop(0, 'rgba(139, 0, 0, 0.1)');
+            gradient.addColorStop(0.5, 'rgba(0, 100, 0, 0.1)');
+            gradient.addColorStop(1, 'rgba(10, 31, 21, 0.2)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, magicCanvas.width, magicCanvas.height);
+
+            // Dibujar partículas
+            particles.forEach(particle => {
+                particle.opacity += particle.twinkleSpeed;
+                if (particle.opacity > 0.7 || particle.opacity < 0.2) {
+                    particle.twinkleSpeed = -particle.twinkleSpeed;
+                }
+
+                particle.x += particle.speedX;
+                particle.y += particle.speedY;
+
+                // Rebotar en los bordes
+                if (particle.x < 0 || particle.x > magicCanvas.width) particle.speedX = -particle.speedX;
+                if (particle.y < 0 || particle.y > magicCanvas.height) particle.speedY = -particle.speedY;
+
+                // Dibujar partícula
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                ctx.fillStyle = particle.color.replace(')', `, ${particle.opacity})`).replace('rgb', 'rgba');
+                ctx.fill();
+
+                // Brillo alrededor
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.size * 2, 0, Math.PI * 2);
+                ctx.fillStyle = particle.color.replace(')', `, ${particle.opacity * 0.3})`).replace('rgb', 'rgba');
+                ctx.fill();
+            });
+
+            requestAnimationFrame(drawParticles);
+        }
+
+        // Crear luces para el árbol
+        function createTreeLights() {
+            treeLights.innerHTML = '';
+            lights = [];
+            const lightCount = 24;
+
+            for (let i = 0; i < lightCount; i++) {
+                const angle = (i / lightCount) * Math.PI * 2;
+                const radius = 40 + (i % 4) * 20;
+
+                const light = document.createElement('div');
+                light.classList.add('tree-light');
+
+                // Posicionar en forma de árbol
+                const x = Math.cos(angle) * radius + 50;
+                const y = Math.sin(angle) * radius * 0.6 + 50;
+
+                light.style.left = `${x}%`;
+                light.style.top = `${y}%`;
+
+                // Animación de parpadeo aleatoria
+                light.style.animationDelay = `${Math.random() * 3}s`;
+                light.style.opacity = '0';
+
+                treeLights.appendChild(light);
+                lights.push(light);
+            }
+        }
+
+        // Encender/apagar luces del árbol
+        function toggleTreeLights() {
+            if (!treeLit) {
+                // Encender luces
+                lights.forEach(light => {
+                    light.style.opacity = '1';
+                    light.style.animationDuration = `${Math.random() * 2 + 1}s`;
+                });
+
+                // Efecto en el árbol
+                const tree = document.querySelector('.tree');
+                const star = document.querySelector('.tree-star');
+
+                tree.style.filter = 'drop-shadow(0 0 30px #32CD32)';
+                star.style.animationDuration = '0.5s';
+
+                treeLit = true;
+
+                // Sonido
+                playMagicSound();
+
+                // Mostrar mensaje
+                setTimeout(() => {
+                    showFloatingMessage("✨ ¡Las luces navideñas brillan para ti, Pancracia! ✨");
+                }, 500);
+            } else {
+                // Apagar luces
+                lights.forEach(light => {
+                    light.style.opacity = '0';
+                });
+
+                // Efecto en el árbol
+                const tree = document.querySelector('.tree');
+                const star = document.querySelector('.tree-star');
+
+                tree.style.filter = 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))';
+                star.style.animationDuration = '1s';
+
+                treeLit = false;
+            }
+        }
+
+        // Crear efectos especiales para el regalo
+        function createGiftEffects() {
+            giftEffects.innerHTML = '';
+
+            // Crear efectos alrededor del regalo
+            const effectCount = 8;
+            const colors = ['#ff0000', '#00ff00', '#ffff00', '#ffd700', '#ffffff'];
+
+            for (let i = 0; i < effectCount; i++) {
+                const effect = document.createElement('div');
+                effect.style.position = 'absolute';
+                effect.style.width = '40px';
+                effect.style.height = '40px';
+                effect.style.background = `radial-gradient(circle, ${colors[i % colors.length]}, transparent)`;
+                effect.style.borderRadius = '50%';
+                effect.style.left = '50%';
+                effect.style.top = '50%';
+                effect.style.transform = 'translate(-50%, -50%)';
+                effect.style.opacity = '0';
+                effect.style.filter = 'blur(5px)';
+                effect.style.zIndex = '1';
+
+                giftEffects.appendChild(effect);
+
+                // Animación de expansión
+                const anim = effect.animate([
+                    { 
+                        width: '0px', 
+                        height: '0px', 
+                        opacity: '0.8',
+                        transform: 'translate(-50%, -50%)'
+                    },
+                    { 
+                        width: '200px', 
+                        height: '200px', 
+                        opacity: '0',
+                        transform: 'translate(-50%, -50%)'
+                    }
+                ], {
+                    duration: 1500,
+                    delay: i * 200,
+                    easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+                });
+
+                // Eliminar después de la animación
+                anim.onfinish = () => {
+                    effect.remove();
+                };
+            }
+        }
+
+        // Crear chispas para el regalo
+        function createGiftSparkles() {
+            giftSparkles.innerHTML = '';
+            const sparkleCount = 60;
+
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.style.position = 'absolute';
+                sparkle.style.width = '20px';
+                sparkle.style.height = '20px';
+                sparkle.style.background = 'radial-gradient(circle, #ffd700, #ffed4e)';
+                sparkle.style.borderRadius = '50%';
+                sparkle.style.left = `${Math.random() * 100}%`;
+                sparkle.style.top = `${Math.random() * 100}%`;
+                sparkle.style.boxShadow = '0 0 20px #ffd700';
+                sparkle.style.animation = `sparkleFloat ${Math.random() * 2 + 1}s infinite alternate`;
+                sparkle.style.zIndex = '2';
+
+                // Crear animación para cada sparkle
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes sparkleFloat {
+                        0% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+                        100% { transform: translate(${Math.random() * 80 - 40}px, ${Math.random() * 80 - 40}px) scale(${Math.random() * 0.5 + 0.5}); opacity: 0.2; }
+                    }
+                `;
+                document.head.appendChild(style);
+
+                giftSparkles.appendChild(sparkle);
+            }
+        }
+
+        // Abrir el regalo - ¡EFECTOS MEJORADOS!
+        function openGift() {
+            if (!giftOpened) {
+                // Mostrar mensaje del regalo
+                giftMessage.style.display = 'block';
+                giftSparkles.style.opacity = '1';
+
+                // Animación del regalo
+                giftContainer.style.transform = 'scale(1.3) rotate(15deg)';
+
+                // Crear efectos especiales
+                createGiftEffects();
+                createGiftSparkles();
+
+                // Sonido mágico
+                playMagicSound();
+
+                // Crear confeti
+                createConfetti();
+
+                giftOpened = true;
+
+                // Mostrar mensaje flotante
+                setTimeout(() => {
+                    showFloatingMessage("🎁 ¡TU REGALO ESPECIAL ESTÁ ABIERTO! 🎁\n\nLee el mensaje completo dentro del regalo");
+                }, 800);
+
+                // Restaurar tamaño del regalo después de la animación
+                setTimeout(() => {
+                    giftContainer.style.transform = 'scale(1.15) rotate(5deg)';
+                }, 500);
+
+                // Desplazarse suavemente al mensaje
+                setTimeout(() => {
+                    giftMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 1000);
+            }
+        }
+
+        // Crear efecto de confeti
+        function createConfetti() {
+            const confettiCount = 100;
+            const colors = ['#ff0000', '#00ff00', '#ffff00', '#ffd700', '#ffffff', '#ffa500'];
+
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '15px';
+                confetti.style.height = '15px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.top = '-30px';
+                confetti.style.zIndex = '1000';
+                confetti.style.opacity = '0.9';
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                confetti.style.boxShadow = '0 0 10px currentColor';
+
+                document.body.appendChild(confetti);
+
+                // Animación
+                const animation = confetti.animate([
+                    { transform: `translate(0, 0) rotate(0deg)`, opacity: 1 },
+                    { transform: `translate(${Math.random() * 300 - 150}px, 100vh) rotate(${Math.random() * 720}deg)`, opacity: 0 }
+                ], {
+                    duration: Math.random() * 4000 + 2000,
+                    easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+                });
+
+                // Eliminar después de la animación
+                animation.onfinish = () => {
+                    confetti.remove();
+                };
+            }
+        }
+
+        // Sonido mágico
+        function playMagicSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+                // Crear sonido mágico con múltiples osciladores
+                for (let i = 0; i < 4; i++) {
+                    setTimeout(() => {
+                        const oscillator = audioContext.createOscillator();
+                        const gainNode = audioContext.createGain();
+
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+
+                        const note = [523.25, 659.25, 783.99, 1046.50][i]; // Do, Mi, Sol, Do alta
+                        oscillator.frequency.setValueAtTime(note, audioContext.currentTime);
+                        oscillator.type = ['sine', 'triangle', 'sawtooth', 'sine'][i];
+
+                        gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+                        gainNode.gain.linearRampToValueAtTime(0.05, audioContext.currentTime + 0.1);
+                        gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 1.5);
+
+                        oscillator.start(audioContext.currentTime);
+                        oscillator.stop(audioContext.currentTime + 1.5);
+                    }, i * 100);
+                }
+            } catch (error) {
+                console.log("Audio no disponible");
+            }
+        }
+
+        // Mostrar mensaje flotante
+        function showFloatingMessage(text) {
+            const message = document.createElement('div');
+            message.textContent = text;
+            message.style.position = 'fixed';
+            message.style.top = '50%';
+            message.style.left = '50%';
+            message.style.transform = 'translate(-50%, -50%)';
+            message.style.background = 'rgba(10, 31, 21, 0.95)';
+            message.style.color = 'gold';
+            message.style.padding = '25px 40px';
+            message.style.borderRadius = '20px';
+            message.style.border = '3px solid gold';
+            message.style.fontFamily = "'Dancing Script', cursive";
+            message.style.fontSize = '2.2rem';
+            message.style.zIndex = '1000';
+            message.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.6)';
+            message.style.textAlign = 'center';
+            message.style.opacity = '0';
+            message.style.transition = 'opacity 0.5s, transform 0.5s';
+            message.style.maxWidth = '90%';
+            message.style.lineHeight = '1.5';
+
+            document.body.appendChild(message);
+
+            // Animar entrada
+            setTimeout(() => {
+                message.style.opacity = '1';
+                message.style.transform = 'translate(-50%, -60%)';
+            }, 100);
+
+            // Animar salida y eliminar
+            setTimeout(() => {
+                message.style.opacity = '0';
+                message.style.transform = 'translate(-50%, -80%)';
+
+                setTimeout(() => {
+                    document.body.removeChild(message);
+                }, 500);
+            }, 3500);
+        }
+
+        // Abrir la página (botón de bienvenida)
+        openGiftBtn.addEventListener('click', function() {
+            // Efecto de chispas al abrir
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * window.innerHeight;
+                    createSparkle(x, y);
+                }, i * 50);
+            }
+
+            // Sonido mágico
+            playMagicSound();
+
+            // Animación de salida de la pantalla de bienvenida
+            welcomeScreen.style.transform = 'translateY(-100%) rotateX(90deg)';
+
+            // Mostrar contenido principal después de un tiempo
+            setTimeout(() => {
+                welcomeScreen.style.display = 'none';
+                mainContent.style.display = 'block';
+
+                // Inicializar efectos
+                createTreeLights();
+                createGiftSparkles();
+
+                // Mostrar mensaje de bienvenida
+                setTimeout(() => {
+                    showFloatingMessage("¡Bienvenida, Pancracia! 🎄\n\nHaz clic en el árbol y luego abre tu regalo especial");
+                }, 800);
+
+            }, 1500);
+        });
+
+        // Crear chispas individuales
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.style.position = 'fixed';
+            sparkle.style.width = '10px';
+            sparkle.style.height = '10px';
+            sparkle.style.background = 'radial-gradient(circle, #ffd700, #ffed4e)';
+            sparkle.style.borderRadius = '50%';
+            sparkle.style.left = `${x}px`;
+            sparkle.style.top = `${y}px`;
+            sparkle.style.zIndex = '1000';
+            sparkle.style.boxShadow = '0 0 15px #ffd700';
+            sparkle.style.pointerEvents = 'none';
+
+            document.body.appendChild(sparkle);
+
+            // Animación
+            sparkle.animate([
+                { opacity: 0, transform: 'scale(0) translate(0, 0)' },
+                { opacity: 1, transform: 'scale(1) translate(0, 0)' },
+                { opacity: 0, transform: 'scale(0) translate(30px, -30px)' }
+            ], {
+                duration: 1200,
+                easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+            });
+
+            // Eliminar después de la animación
+            setTimeout(() => {
+                document.body.removeChild(sparkle);
+            }, 1200);
+        }
+
+        // Interacción con el árbol
+        treeContainer.addEventListener('click', toggleTreeLights);
+
+        // Interacción con el regalo
+        giftContainer.addEventListener('click', openGift);
+
+        // Inicializar
+        window.addEventListener('load', function() {
+            // Iniciar música automáticamente
+            startMusic();
+            
+            resizeCanvas();
+            createParticles();
+            drawParticles();
+
+            // Ajustar canvas al cambiar tamaño de ventana
+            window.addEventListener('resize', function() {
+                resizeCanvas();
+                createParticles();
+            });
+
+            // Mensaje en consola
+            console.log("%c🎄 ¡FELIZ NAVIDAD, PANCRACIA! 🎄", "color: gold; font-size: 28px; font-weight: bold; text-shadow: 3px 3px 0 #8B0000");
+            console.log("%cEste mensaje fue creado especialmente para recordarte lo increíble que eres. ¡Nunca te rindas! ❤️", "color: #32CD32; font-size: 16px;");
+
+            // Auto-iniciar después de 5 segundos (opcional)
+            setTimeout(() => {
+                if (welcomeScreen.style.display !== 'none') {
+                    // Parpadear el botón para llamar la atención
+                    openGiftBtn.style.animation = 'buttonGlow 0.5s infinite alternate';
+                    setTimeout(() => {
+                        openGiftBtn.style.animation = 'buttonGlow 2s infinite alternate';
+                    }, 2000);
+                }
+            }, 5000);
+        });
+
+        // Permitir reiniciar la página con la tecla R
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'r' || e.key === 'R') {
+                location.reload();
+            }
+        });
+    </script>
+</body>
+</html>
