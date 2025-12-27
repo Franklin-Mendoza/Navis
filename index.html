@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>¡Feliz Navidad, Pancracia!</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
@@ -11,6 +11,11 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            font-size: 16px;
         }
 
         body {
@@ -19,6 +24,7 @@
             color: white;
             min-height: 100vh;
             overflow-x: hidden;
+            touch-action: manipulation;
         }
 
         /* Fondo animado */
@@ -47,6 +53,7 @@
             z-index: 1000;
             transition: transform 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
             overflow: hidden;
+            padding: 20px;
         }
 
         .welcome-screen::before {
@@ -66,12 +73,12 @@
 
         .welcome-content {
             text-align: center;
-            padding: 60px 40px;
+            padding: 30px 20px;
             background: rgba(10, 31, 21, 0.85);
             border-radius: 30px;
             border: 5px solid gold;
             max-width: 800px;
-            width: 90%;
+            width: 95%;
             box-shadow: 
                 0 0 80px rgba(255, 215, 0, 0.7),
                 0 20px 50px rgba(0, 0, 0, 0.6),
@@ -94,33 +101,35 @@
 
         .welcome-title {
             font-family: 'Mountains of Christmas', cursive;
-            font-size: 5rem;
+            font-size: clamp(2.5rem, 8vw, 5rem);
             color: gold;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-shadow: 
                 3px 3px 0 #8B0000,
                 6px 6px 0 rgba(0, 0, 0, 0.5);
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             animation: titleFloat 4s ease-in-out infinite alternate;
+            line-height: 1.2;
         }
 
         @keyframes titleFloat {
             0% { transform: translateY(0) rotate(-1deg); }
-            100% { transform: translateY(-20px) rotate(1deg); }
+            100% { transform: translateY(-10px) rotate(1deg); }
         }
 
         .welcome-subtitle {
             font-family: 'Dancing Script', cursive;
-            font-size: 2.8rem;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
             color: white;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
             animation: subtitleFloat 5s ease-in-out infinite alternate;
+            line-height: 1.3;
         }
 
         @keyframes subtitleFloat {
             0% { transform: translateY(0); opacity: 0.9; }
-            100% { transform: translateY(-15px); opacity: 1; }
+            100% { transform: translateY(-8px); opacity: 1; }
         }
 
         .open-gift-btn {
@@ -128,25 +137,27 @@
             background-size: 200% 100%;
             color: white;
             border: none;
-            padding: 25px 60px;
-            font-size: 2.2rem;
+            padding: clamp(15px, 4vw, 25px) clamp(30px, 8vw, 60px);
+            font-size: clamp(1.4rem, 4vw, 2.2rem);
             border-radius: 60px;
             cursor: pointer;
             transition: all 0.4s;
-            margin-top: 30px;
+            margin-top: 20px;
             box-shadow: 
-                0 15px 30px rgba(0, 0, 0, 0.4),
-                0 0 40px rgba(255, 215, 0, 0.5);
+                0 10px 20px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(255, 215, 0, 0.5);
             font-family: 'Mountains of Christmas', cursive;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             position: relative;
             overflow: hidden;
             animation: buttonGlow 2s infinite alternate;
+            width: 90%;
+            max-width: 500px;
         }
 
         @keyframes buttonGlow {
-            0% { box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 40px rgba(255, 215, 0, 0.5); }
-            100% { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 60px rgba(255, 215, 0, 0.7); }
+            0% { box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 215, 0, 0.5); }
+            100% { box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 50px rgba(255, 215, 0, 0.7); }
         }
 
         .open-gift-btn::before {
@@ -164,14 +175,14 @@
             left: 100%;
         }
 
-        .open-gift-btn:hover {
-            transform: translateY(-8px) scale(1.05);
+        .open-gift-btn:active {
+            transform: translateY(-4px) scale(1.03);
             background-position: 100% 0;
         }
 
         .instruction {
-            margin-top: 30px;
-            font-size: 1.5rem;
+            margin-top: 25px;
+            font-size: clamp(1rem, 3vw, 1.5rem);
             color: gold;
             animation: pulse 2s infinite;
         }
@@ -188,22 +199,22 @@
             z-index: 2;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 30px;
+            padding: 20px;
             animation: contentAppear 1.5s;
         }
 
         @keyframes contentAppear {
-            0% { opacity: 0; transform: translateY(50px); }
+            0% { opacity: 0; transform: translateY(30px); }
             100% { opacity: 1; transform: translateY(0); }
         }
 
         /* Árbol interactivo */
         .tree-section {
             text-align: center;
-            margin: 40px 0 80px 0;
-            padding: 40px;
+            margin: 20px 0 40px 0;
+            padding: 25px;
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 25px;
+            border-radius: 20px;
             border: 3px solid rgba(255, 215, 0, 0.3);
             backdrop-filter: blur(10px);
             transition: all 0.5s;
@@ -212,7 +223,7 @@
         .tree-section:hover {
             background: rgba(255, 255, 255, 0.1);
             border-color: rgba(255, 215, 0, 0.6);
-            transform: translateY(-10px);
+            transform: translateY(-5px);
         }
 
         .tree-container {
@@ -220,15 +231,15 @@
             position: relative;
             cursor: pointer;
             transition: transform 0.5s;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
-        .tree-container:hover {
-            transform: scale(1.15);
+        .tree-container:active {
+            transform: scale(1.1);
         }
 
         .tree {
-            font-size: 12rem;
+            font-size: clamp(6rem, 20vw, 12rem);
             color: #228B22;
             text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.7);
             position: relative;
@@ -237,10 +248,10 @@
 
         .tree-star {
             position: absolute;
-            top: -50px;
+            top: -35px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 6rem;
+            font-size: clamp(3rem, 10vw, 6rem);
             color: gold;
             text-shadow: 0 0 40px gold;
             animation: starTwinkle 1s infinite alternate;
@@ -253,17 +264,17 @@
         }
 
         .tree-instruction {
-            font-size: 1.8rem;
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
             color: gold;
-            margin-top: 20px;
+            margin-top: 15px;
             font-family: 'Dancing Script', cursive;
         }
 
         /* Luces del árbol */
         .tree-light {
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 15px;
+            height: 15px;
             border-radius: 50%;
             box-shadow: 0 0 15px;
             animation: lightColorChange 3s infinite alternate;
@@ -281,33 +292,33 @@
         /* Regalo especial - ¡TODO EL CONTENIDO AQUÍ! */
         .gift-section {
             text-align: center;
-            margin: 40px 0 60px 0;
-            padding: 50px;
+            margin: 20px 0 40px 0;
+            padding: 30px 20px;
             background: linear-gradient(135deg, rgba(139, 0, 0, 0.9), rgba(0, 100, 0, 0.9));
-            border-radius: 25px;
+            border-radius: 20px;
             border: 4px solid gold;
             box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.5),
-                0 0 50px rgba(255, 215, 0, 0.3);
+                0 15px 30px rgba(0, 0, 0, 0.5),
+                0 0 40px rgba(255, 215, 0, 0.3);
             position: relative;
             overflow: hidden;
-            min-height: 500px;
+            min-height: 400px;
         }
 
         .gift-container {
             display: inline-block;
             cursor: pointer;
             transition: transform 0.5s;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             position: relative;
         }
 
-        .gift-container:hover {
-            transform: scale(1.15) rotate(5deg);
+        .gift-container:active {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .gift {
-            font-size: 10rem;
+            font-size: clamp(5rem, 15vw, 10rem);
             color: #B22222;
             text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.7);
             position: relative;
@@ -316,19 +327,19 @@
 
         .gift-bow {
             position: absolute;
-            top: 20px;
+            top: 15px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 6vw, 4rem);
             color: gold;
             text-shadow: 0 0 20px gold;
             z-index: 2;
         }
 
         .gift-instruction {
-            font-size: 1.8rem;
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
             color: gold;
-            margin-top: 20px;
+            margin-top: 15px;
             font-family: 'Dancing Script', cursive;
         }
 
@@ -336,14 +347,14 @@
         .gift-message {
             display: none;
             background: rgba(255, 215, 0, 0.95);
-            color: #006400;
-            padding: 60px 50px;
-            border-radius: 20px;
-            margin-top: 40px;
-            font-size: 1.8rem;
+            color: #000000; /* Cambiado a negro para mejor contraste */
+            padding: 30px 20px;
+            border-radius: 15px;
+            margin-top: 30px;
+            font-size: clamp(1.2rem, 3.5vw, 1.8rem);
             font-weight: bold;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-            line-height: 1.8;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            line-height: 1.6;
             border: 3px solid #8B0000;
             position: relative;
             z-index: 1;
@@ -352,7 +363,7 @@
         }
 
         @keyframes messageAppear {
-            0% { opacity: 0; transform: translateY(30px) scale(0.9); }
+            0% { opacity: 0; transform: translateY(20px) scale(0.9); }
             100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
@@ -368,43 +379,43 @@
         /* Estilos específicos para el mensaje del regalo */
         .message-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 25px;
             border-bottom: 3px solid #8B0000;
-            padding-bottom: 25px;
+            padding-bottom: 15px;
         }
 
         .message-title {
             font-family: 'Mountains of Christmas', cursive;
-            font-size: 3.5rem;
+            font-size: clamp(1.8rem, 6vw, 3.5rem);
             color: #8B0000;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-shadow: 2px 2px 0 rgba(255, 215, 0, 0.3);
         }
 
         .message-saludo {
-            font-size: 2rem;
+            font-size: clamp(1.2rem, 4vw, 2rem);
             color: #8B0000;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             font-weight: bold;
         }
 
         .message-content {
-            font-size: 1.8rem;
-            line-height: 1.8;
-            margin-bottom: 25px;
-            color: #006400;
+            font-size: clamp(1rem, 3.5vw, 1.8rem);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #000000; /* Cambiado a negro */
             text-align: justify;
         }
 
         .message-highlight {
             color: #8B0000;
-            font-size: 2.5rem;
+            font-size: clamp(1.4rem, 4vw, 2.5rem);
             font-weight: bold;
             text-align: center;
-            margin: 35px 0;
-            padding: 20px;
+            margin: 25px 0;
+            padding: 15px;
             background: rgba(139, 0, 0, 0.1);
-            border-radius: 15px;
+            border-radius: 12px;
             border-left: 5px solid #8B0000;
             border-right: 5px solid #8B0000;
             animation: highlightPulse 2s infinite alternate;
@@ -417,23 +428,24 @@
 
         .message-footer {
             text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
+            margin-top: 35px;
+            padding-top: 20px;
             border-top: 2px solid #8B0000;
         }
 
         .final-message {
-            font-size: 2.2rem;
+            font-size: clamp(1.4rem, 4vw, 2.2rem);
             color: #8B0000;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             font-weight: bold;
         }
 
         .signature {
-            font-size: 2rem;
-            color: #006400;
+            font-size: clamp(1.2rem, 3.5vw, 2rem);
+            color: #000000; /* Cambiado a negro */
             font-family: 'Dancing Script', cursive;
-            margin-top: 30px;
+            margin-top: 25px;
+            line-height: 1.5;
         }
 
         /* Efectos especiales del regalo */
@@ -450,83 +462,142 @@
         /* Mensaje final mínimo */
         .closing-section {
             text-align: center;
-            padding: 30px;
-            margin-top: 30px;
+            padding: 20px;
+            margin-top: 20px;
             opacity: 0.8;
             transition: all 0.5s;
         }
 
         .closing-section:hover {
             opacity: 1;
-            transform: translateY(-5px);
+            transform: translateY(-3px);
         }
 
         .closing-text {
-            font-size: 1.6rem;
-            line-height: 1.6;
+            font-size: clamp(1.1rem, 3vw, 1.6rem);
+            line-height: 1.4;
             color: rgba(255, 255, 255, 0.9);
             font-family: 'Dancing Script', cursive;
         }
 
-        /* Responsive */
+        /* Mensaje flotante */
+        .floating-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(10, 31, 21, 0.95);
+            color: gold;
+            padding: 20px 30px;
+            border-radius: 20px;
+            border: 3px solid gold;
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(1.2rem, 4vw, 2.2rem);
+            z-index: 1000;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s, transform 0.5s;
+            max-width: 90%;
+            line-height: 1.4;
+        }
+
+        /* Mejoras para móviles */
         @media (max-width: 768px) {
-            .welcome-title {
-                font-size: 3.5rem;
+            body {
+                font-size: 14px;
             }
 
-            .welcome-subtitle {
-                font-size: 2.2rem;
+            .welcome-screen {
+                padding: 10px;
+            }
+
+            .welcome-content {
+                padding: 20px 15px;
+                border-width: 3px;
             }
 
             .open-gift-btn {
-                padding: 20px 40px;
-                font-size: 1.8rem;
+                width: 95%;
+                margin-top: 15px;
             }
 
-            .message-title {
-                font-size: 2.8rem;
+            .main-content {
+                padding: 15px 10px;
             }
 
-            .message-saludo {
+            .tree-section, .gift-section {
+                margin: 15px 0 30px 0;
+                padding: 20px 15px;
+            }
+
+            .gift-message {
+                padding: 25px 15px;
+            }
+
+            .signature {
+                line-height: 1.4;
+            }
+        }
+
+        @media (max-width: 480px) {
+            html {
+                font-size: 14px;
+            }
+
+            .welcome-title {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+            }
+
+            .welcome-subtitle {
                 font-size: 1.6rem;
+                margin-bottom: 20px;
             }
 
-            .message-content, .message-highlight {
+            .open-gift-btn {
                 font-size: 1.4rem;
+                padding: 15px 25px;
             }
 
             .tree {
-                font-size: 8rem;
+                font-size: 6rem;
             }
 
             .tree-star {
-                font-size: 4rem;
-                top: -35px;
+                font-size: 3rem;
+                top: -25px;
             }
 
             .gift {
-                font-size: 7rem;
+                font-size: 5rem;
             }
 
-            .final-message {
+            .gift-message {
+                font-size: 1.1rem;
+            }
+
+            .message-title {
                 font-size: 1.8rem;
             }
 
             .signature {
-                font-size: 1.6rem;
+                font-size: 1.2rem;
             }
+        }
 
-            .gift-section {
-                padding: 30px 20px;
+        /* Evitar zoom en inputs en iOS */
+        @media screen and (max-width: 768px) {
+            input, select, textarea {
+                font-size: 16px !important;
             }
+        }
 
-            .gift-message {
-                padding: 40px 25px;
-            }
-
-            .closing-section {
-                padding: 20px 15px;
-            }
+        /* Mejorar toques en móviles */
+        button, .tree-container, .gift-container {
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
         }
     </style>
 </head>
@@ -562,7 +633,7 @@
                 <div class="tree">🎄</div>
                 <div class="tree-lights" id="treeLights"></div>
             </div>
-            <p class="tree-instruction">Haz clic en el árbol para encender las luces mágicas</p>
+            <p class="tree-instruction">Toca el árbol para encender las luces mágicas</p>
         </div>
 
         <!-- Regalo especial - ¡TODO EL CONTENIDO AQUÍ! -->
@@ -574,7 +645,7 @@
                 <div class="gift-sparkles" id="giftSparkles"></div>
                 <div class="gift-effects" id="giftEffects"></div>
             </div>
-            <p class="gift-instruction">¡Haz clic para abrir tu regalo y ver el mensaje especial!</p>
+            <p class="gift-instruction">¡Toca para abrir tu regalo y ver el mensaje especial!</p>
 
             <!-- Mensaje dentro del regalo - ¡TODO EL CONTENIDO AQUÍ! -->
             <div class="gift-message" id="giftMessage">
@@ -584,32 +655,32 @@
                         ¡FELIZ NAVIDAD, REINA DE LA LOCURA🎄💥
                     </p>
 
-                    <div style="margin-top: 40px; padding: 20px; background: rgba(255, 50, 50, 0.15); border: 3px dashed #ff6b6b; border-radius: 15px; font-family: 'Comic Sans MS', cursive;">
-                        <p style="font-size: 1.7rem; color: #d63384; margin-bottom: 15px;">
+                    <div style="margin-top: 30px; padding: 15px; background: rgba(255, 50, 50, 0.15); border: 3px dashed #ff6b6b; border-radius: 15px; font-family: 'Comic Sans MS', cursive;">
+                        <p style="font-size: clamp(1.1rem, 3vw, 1.7rem); color: #d63384; margin-bottom: 10px;">
                             ¡Te escribo esto entre risas, nervios y un poquito de miedo! 😱
                         </p>
                         
-                        <p style="font-size: 1.6rem; color: #e74c3c; font-style: italic; margin-bottom: 15px;">
+                        <p style="font-size: clamp(1rem, 3vw, 1.6rem); color: #e74c3c; font-style: italic; margin-bottom: 10px;">
                             Porque si tu marido lee esto… ¡de seguro se ira donde la vecina! 🏃‍
                         </p>
 
-                        <p style="font-size: 1.5rem; color: #2980b9; margin-bottom: 10px;">
+                        <p style="font-size: clamp(1rem, 3vw, 1.5rem); color: #2980b9; margin-bottom: 10px;">
                             Pero es que ¡NO PODÍA NO DECIRTE FELIZ NAVIDAD!
                         </p>
                     </div>
 
-                    <p class="signature" style="margin-top: 30px; font-size: 1.55rem; line-height: 1.7; color: #2c3e50;">
-                        🎅 ¡Que esta Navidad te llene de esperanza, alegría y abrazos de los buenos!<br>
-                        Sí, este año estuvo difícil… pero lo importante es que NO TE RENDISTE.<br>
-                        Disfruta cada momento con tu familia, hasta los más locos<br>
-                        porque en Navidad y todos los dias siempre ellos estarán ahí para apoyarte.<br><br>
-                        Y yo tambien siempre te estare apoyando.<br>
+                    <!-- Mensaje con letras negras para mejor contraste -->
+                    <div class="signature" style="color: #000000;">
+                        🎅 <strong>¡Que esta Navidad te llene de esperanza, alegría y abrazos de los buenos!</strong><br><br>
+                        Sí, este año estuvo difícil… pero lo importante es que <strong>NO TE RENDISTE</strong>.<br><br>
+                        Disfruta cada momento con tu familia, hasta los más locos, porque en Navidad y todos los días siempre ellos estarán ahí para apoyarte.<br><br>
+                        <strong>Y yo también siempre te estaré apoyando.</strong><br><br>
                         ¡Sigue adelante, Pancracia! Eres fuerte, vales mucho… y no estás sola. 💪❤️<br><br>
                         Con un abrazo de oso goloso…<br>
-                        Te deseo una FELIZ NAVIDAD!!...
+                        Te deseo una <strong>FELIZ NAVIDAD!!...</strong><br><br>
                         — Atte<br>Tu "patrón/jefe/amo"… ya sabes quién 👀<br>
-                        <b>Vlady</b>
-                    </p>
+                        <strong style="color: #8B0000; font-size: 1.2em;">Vlady</strong>
+                    </div>
                 </div>
             </div>
         </div>
@@ -650,17 +721,21 @@
             navidadMusic.volume = 1.0;
             
             // Intentar reproducir automáticamente
-            navidadMusic.play().then(() => {
-                console.log("🎵 Música navideña reproduciéndose al 100% de volumen");
-            }).catch(error => {
-                // Si hay error de autoplay, intentar reproducir al primer clic
-                console.log("Esperando interacción del usuario para reproducir música...");
-                document.addEventListener('click', function startOnClick() {
-                    navidadMusic.play();
-                    console.log("🎵 Música iniciada después del clic del usuario");
-                    document.removeEventListener('click', startOnClick);
-                }, { once: true });
-            });
+            const playPromise = navidadMusic.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    console.log("🎵 Música navideña reproduciéndose al 100% de volumen");
+                }).catch(error => {
+                    console.log("Esperando interacción del usuario para reproducir música...");
+                    // Si hay error de autoplay, intentar reproducir al primer toque
+                    document.addEventListener('click', function startOnClick() {
+                        navidadMusic.play();
+                        console.log("🎵 Música iniciada después de la interacción del usuario");
+                        document.removeEventListener('click', startOnClick);
+                    }, { once: true });
+                });
+            }
         }
 
         // Ajustar tamaño del canvas
@@ -672,15 +747,15 @@
         // Crear partículas mágicas para el fondo
         function createParticles() {
             particles = [];
-            const particleCount = Math.min(200, Math.floor(window.innerWidth / 10));
+            const particleCount = Math.min(100, Math.floor(window.innerWidth / 15));
 
             for (let i = 0; i < particleCount; i++) {
                 particles.push({
                     x: Math.random() * magicCanvas.width,
                     y: Math.random() * magicCanvas.height,
-                    size: Math.random() * 4 + 1,
-                    speedX: Math.random() * 1 - 0.5,
-                    speedY: Math.random() * 1 - 0.5,
+                    size: Math.random() * 3 + 1,
+                    speedX: Math.random() * 0.5 - 0.25,
+                    speedY: Math.random() * 0.5 - 0.25,
                     color: i % 4 === 0 ? '#ff0000' : i % 4 === 1 ? '#00ff00' : i % 4 === 2 ? '#ffff00' : '#ffd700',
                     opacity: Math.random() * 0.5 + 0.2,
                     twinkleSpeed: Math.random() * 0.03 + 0.01
@@ -690,6 +765,8 @@
 
         // Dibujar partículas en el fondo
         function drawParticles() {
+            if (!magicCanvas || !ctx) return;
+            
             ctx.clearRect(0, 0, magicCanvas.width, magicCanvas.height);
 
             // Fondo con gradiente
@@ -725,8 +802,8 @@
 
                 // Brillo alrededor
                 ctx.beginPath();
-                ctx.arc(particle.x, particle.y, particle.size * 2, 0, Math.PI * 2);
-                ctx.fillStyle = particle.color.replace(')', `, ${particle.opacity * 0.3})`).replace('rgb', 'rgba');
+                ctx.arc(particle.x, particle.y, particle.size * 1.5, 0, Math.PI * 2);
+                ctx.fillStyle = particle.color.replace(')', `, ${particle.opacity * 0.2})`).replace('rgb', 'rgba');
                 ctx.fill();
             });
 
@@ -737,11 +814,11 @@
         function createTreeLights() {
             treeLights.innerHTML = '';
             lights = [];
-            const lightCount = 24;
+            const lightCount = Math.min(18, Math.floor(window.innerWidth / 25));
 
             for (let i = 0; i < lightCount; i++) {
                 const angle = (i / lightCount) * Math.PI * 2;
-                const radius = 40 + (i % 4) * 20;
+                const radius = 30 + (i % 3) * 15;
 
                 const light = document.createElement('div');
                 light.classList.add('tree-light');
@@ -809,21 +886,21 @@
             giftEffects.innerHTML = '';
 
             // Crear efectos alrededor del regalo
-            const effectCount = 8;
+            const effectCount = 6;
             const colors = ['#ff0000', '#00ff00', '#ffff00', '#ffd700', '#ffffff'];
 
             for (let i = 0; i < effectCount; i++) {
                 const effect = document.createElement('div');
                 effect.style.position = 'absolute';
-                effect.style.width = '40px';
-                effect.style.height = '40px';
+                effect.style.width = '30px';
+                effect.style.height = '30px';
                 effect.style.background = `radial-gradient(circle, ${colors[i % colors.length]}, transparent)`;
                 effect.style.borderRadius = '50%';
                 effect.style.left = '50%';
                 effect.style.top = '50%';
                 effect.style.transform = 'translate(-50%, -50%)';
                 effect.style.opacity = '0';
-                effect.style.filter = 'blur(5px)';
+                effect.style.filter = 'blur(3px)';
                 effect.style.zIndex = '1';
 
                 giftEffects.appendChild(effect);
@@ -837,14 +914,14 @@
                         transform: 'translate(-50%, -50%)'
                     },
                     { 
-                        width: '200px', 
-                        height: '200px', 
+                        width: '150px', 
+                        height: '150px', 
                         opacity: '0',
                         transform: 'translate(-50%, -50%)'
                     }
                 ], {
-                    duration: 1500,
-                    delay: i * 200,
+                    duration: 1200,
+                    delay: i * 150,
                     easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
                 });
 
@@ -858,18 +935,18 @@
         // Crear chispas para el regalo
         function createGiftSparkles() {
             giftSparkles.innerHTML = '';
-            const sparkleCount = 60;
+            const sparkleCount = Math.min(40, Math.floor(window.innerWidth / 20));
 
             for (let i = 0; i < sparkleCount; i++) {
                 const sparkle = document.createElement('div');
                 sparkle.style.position = 'absolute';
-                sparkle.style.width = '20px';
-                sparkle.style.height = '20px';
+                sparkle.style.width = '15px';
+                sparkle.style.height = '15px';
                 sparkle.style.background = 'radial-gradient(circle, #ffd700, #ffed4e)';
                 sparkle.style.borderRadius = '50%';
                 sparkle.style.left = `${Math.random() * 100}%`;
                 sparkle.style.top = `${Math.random() * 100}%`;
-                sparkle.style.boxShadow = '0 0 20px #ffd700';
+                sparkle.style.boxShadow = '0 0 15px #ffd700';
                 sparkle.style.animation = `sparkleFloat ${Math.random() * 2 + 1}s infinite alternate`;
                 sparkle.style.zIndex = '2';
 
@@ -878,7 +955,7 @@
                 style.textContent = `
                     @keyframes sparkleFloat {
                         0% { transform: translate(0, 0) scale(1); opacity: 0.8; }
-                        100% { transform: translate(${Math.random() * 80 - 40}px, ${Math.random() * 80 - 40}px) scale(${Math.random() * 0.5 + 0.5}); opacity: 0.2; }
+                        100% { transform: translate(${Math.random() * 60 - 30}px, ${Math.random() * 60 - 30}px) scale(${Math.random() * 0.5 + 0.5}); opacity: 0.2; }
                     }
                 `;
                 document.head.appendChild(style);
@@ -895,7 +972,7 @@
                 giftSparkles.style.opacity = '1';
 
                 // Animación del regalo
-                giftContainer.style.transform = 'scale(1.3) rotate(15deg)';
+                giftContainer.style.transform = 'scale(1.2) rotate(10deg)';
 
                 // Crear efectos especiales
                 createGiftEffects();
@@ -912,53 +989,55 @@
                 // Mostrar mensaje flotante
                 setTimeout(() => {
                     showFloatingMessage("🎁 ¡TU REGALO ESPECIAL ESTÁ ABIERTO! 🎁\n\nLee el mensaje completo dentro del regalo");
-                }, 800);
+                }, 600);
 
                 // Restaurar tamaño del regalo después de la animación
                 setTimeout(() => {
-                    giftContainer.style.transform = 'scale(1.15) rotate(5deg)';
-                }, 500);
+                    giftContainer.style.transform = 'scale(1.1) rotate(5deg)';
+                }, 400);
 
                 // Desplazarse suavemente al mensaje
                 setTimeout(() => {
                     giftMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 1000);
+                }, 800);
             }
         }
 
         // Crear efecto de confeti
         function createConfetti() {
-            const confettiCount = 100;
+            const confettiCount = Math.min(70, Math.floor(window.innerWidth / 10));
             const colors = ['#ff0000', '#00ff00', '#ffff00', '#ffd700', '#ffffff', '#ffa500'];
 
             for (let i = 0; i < confettiCount; i++) {
                 const confetti = document.createElement('div');
                 confetti.style.position = 'fixed';
-                confetti.style.width = '15px';
-                confetti.style.height = '15px';
+                confetti.style.width = '12px';
+                confetti.style.height = '12px';
                 confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
                 confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
                 confetti.style.left = `${Math.random() * 100}vw`;
-                confetti.style.top = '-30px';
+                confetti.style.top = '-20px';
                 confetti.style.zIndex = '1000';
                 confetti.style.opacity = '0.9';
                 confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-                confetti.style.boxShadow = '0 0 10px currentColor';
+                confetti.style.boxShadow = '0 0 8px currentColor';
 
                 document.body.appendChild(confetti);
 
                 // Animación
                 const animation = confetti.animate([
                     { transform: `translate(0, 0) rotate(0deg)`, opacity: 1 },
-                    { transform: `translate(${Math.random() * 300 - 150}px, 100vh) rotate(${Math.random() * 720}deg)`, opacity: 0 }
+                    { transform: `translate(${Math.random() * 200 - 100}px, 100vh) rotate(${Math.random() * 720}deg)`, opacity: 0 }
                 ], {
-                    duration: Math.random() * 4000 + 2000,
+                    duration: Math.random() * 3000 + 1500,
                     easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
                 });
 
                 // Eliminar después de la animación
                 animation.onfinish = () => {
-                    confetti.remove();
+                    if (confetti.parentNode) {
+                        confetti.remove();
+                    }
                 };
             }
         }
@@ -969,7 +1048,7 @@
                 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
                 // Crear sonido mágico con múltiples osciladores
-                for (let i = 0; i < 4; i++) {
+                for (let i = 0; i < 3; i++) {
                     setTimeout(() => {
                         const oscillator = audioContext.createOscillator();
                         const gainNode = audioContext.createGain();
@@ -977,17 +1056,17 @@
                         oscillator.connect(gainNode);
                         gainNode.connect(audioContext.destination);
 
-                        const note = [523.25, 659.25, 783.99, 1046.50][i]; // Do, Mi, Sol, Do alta
+                        const note = [523.25, 659.25, 783.99][i]; // Do, Mi, Sol
                         oscillator.frequency.setValueAtTime(note, audioContext.currentTime);
-                        oscillator.type = ['sine', 'triangle', 'sawtooth', 'sine'][i];
+                        oscillator.type = ['sine', 'triangle', 'sawtooth'][i];
 
                         gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-                        gainNode.gain.linearRampToValueAtTime(0.05, audioContext.currentTime + 0.1);
-                        gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 1.5);
+                        gainNode.gain.linearRampToValueAtTime(0.03, audioContext.currentTime + 0.1);
+                        gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 1.0);
 
                         oscillator.start(audioContext.currentTime);
-                        oscillator.stop(audioContext.currentTime + 1.5);
-                    }, i * 100);
+                        oscillator.stop(audioContext.currentTime + 1.0);
+                    }, i * 80);
                 }
             } catch (error) {
                 console.log("Audio no disponible");
@@ -997,25 +1076,9 @@
         // Mostrar mensaje flotante
         function showFloatingMessage(text) {
             const message = document.createElement('div');
+            message.className = 'floating-message';
             message.textContent = text;
-            message.style.position = 'fixed';
-            message.style.top = '50%';
-            message.style.left = '50%';
-            message.style.transform = 'translate(-50%, -50%)';
-            message.style.background = 'rgba(10, 31, 21, 0.95)';
-            message.style.color = 'gold';
-            message.style.padding = '25px 40px';
-            message.style.borderRadius = '20px';
-            message.style.border = '3px solid gold';
-            message.style.fontFamily = "'Dancing Script', cursive";
-            message.style.fontSize = '2.2rem';
-            message.style.zIndex = '1000';
-            message.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.6)';
-            message.style.textAlign = 'center';
-            message.style.opacity = '0';
-            message.style.transition = 'opacity 0.5s, transform 0.5s';
-            message.style.maxWidth = '90%';
-            message.style.lineHeight = '1.5';
+            message.style.whiteSpace = 'pre-line';
 
             document.body.appendChild(message);
 
@@ -1023,28 +1086,30 @@
             setTimeout(() => {
                 message.style.opacity = '1';
                 message.style.transform = 'translate(-50%, -60%)';
-            }, 100);
+            }, 50);
 
             // Animar salida y eliminar
             setTimeout(() => {
                 message.style.opacity = '0';
-                message.style.transform = 'translate(-50%, -80%)';
+                message.style.transform = 'translate(-50%, -70%)';
 
                 setTimeout(() => {
-                    document.body.removeChild(message);
+                    if (message.parentNode) {
+                        document.body.removeChild(message);
+                    }
                 }, 500);
-            }, 3500);
+            }, 2500);
         }
 
         // Abrir la página (botón de bienvenida)
         openGiftBtn.addEventListener('click', function() {
             // Efecto de chispas al abrir
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 15; i++) {
                 setTimeout(() => {
                     const x = Math.random() * window.innerWidth;
                     const y = Math.random() * window.innerHeight;
                     createSparkle(x, y);
-                }, i * 50);
+                }, i * 40);
             }
 
             // Sonido mágico
@@ -1064,24 +1129,24 @@
 
                 // Mostrar mensaje de bienvenida
                 setTimeout(() => {
-                    showFloatingMessage("¡Bienvenida, Pancracia! 🎄\n\nHaz clic en el árbol y luego abre tu regalo especial");
-                }, 800);
+                    showFloatingMessage("¡Bienvenida, Pancracia! 🎄\n\nToca el árbol y luego abre tu regalo especial");
+                }, 600);
 
-            }, 1500);
+            }, 1200);
         });
 
         // Crear chispas individuales
         function createSparkle(x, y) {
             const sparkle = document.createElement('div');
             sparkle.style.position = 'fixed';
-            sparkle.style.width = '10px';
-            sparkle.style.height = '10px';
+            sparkle.style.width = '8px';
+            sparkle.style.height = '8px';
             sparkle.style.background = 'radial-gradient(circle, #ffd700, #ffed4e)';
             sparkle.style.borderRadius = '50%';
             sparkle.style.left = `${x}px`;
             sparkle.style.top = `${y}px`;
             sparkle.style.zIndex = '1000';
-            sparkle.style.boxShadow = '0 0 15px #ffd700';
+            sparkle.style.boxShadow = '0 0 12px #ffd700';
             sparkle.style.pointerEvents = 'none';
 
             document.body.appendChild(sparkle);
@@ -1090,23 +1155,33 @@
             sparkle.animate([
                 { opacity: 0, transform: 'scale(0) translate(0, 0)' },
                 { opacity: 1, transform: 'scale(1) translate(0, 0)' },
-                { opacity: 0, transform: 'scale(0) translate(30px, -30px)' }
+                { opacity: 0, transform: 'scale(0) translate(20px, -20px)' }
             ], {
-                duration: 1200,
+                duration: 1000,
                 easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
             });
 
             // Eliminar después de la animación
             setTimeout(() => {
-                document.body.removeChild(sparkle);
-            }, 1200);
+                if (sparkle.parentNode) {
+                    document.body.removeChild(sparkle);
+                }
+            }, 1000);
         }
 
-        // Interacción con el árbol
+        // Interacción con el árbol (touch support)
         treeContainer.addEventListener('click', toggleTreeLights);
+        treeContainer.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            toggleTreeLights();
+        });
 
-        // Interacción con el regalo
+        // Interacción con el regalo (touch support)
         giftContainer.addEventListener('click', openGift);
+        giftContainer.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            openGift();
+        });
 
         // Inicializar
         window.addEventListener('load', function() {
@@ -1124,8 +1199,8 @@
             });
 
             // Mensaje en consola
-            console.log("%c🎄 ¡FELIZ NAVIDAD, PANCRACIA! 🎄", "color: gold; font-size: 28px; font-weight: bold; text-shadow: 3px 3px 0 #8B0000");
-            console.log("%cEste mensaje fue creado especialmente para recordarte lo increíble que eres. ¡Nunca te rindas! ❤️", "color: #32CD32; font-size: 16px;");
+            console.log("%c🎄 ¡FELIZ NAVIDAD, PANCRACIA! 🎄", "color: gold; font-size: 20px; font-weight: bold; text-shadow: 2px 2px 0 #8B0000");
+            console.log("%cEste mensaje fue creado especialmente para recordarte lo increíble que eres. ¡Nunca te rindas! ❤️", "color: #32CD32; font-size: 14px;");
 
             // Auto-iniciar después de 5 segundos (opcional)
             setTimeout(() => {
@@ -1134,9 +1209,9 @@
                     openGiftBtn.style.animation = 'buttonGlow 0.5s infinite alternate';
                     setTimeout(() => {
                         openGiftBtn.style.animation = 'buttonGlow 2s infinite alternate';
-                    }, 2000);
+                    }, 1500);
                 }
-            }, 5000);
+            }, 3000);
         });
 
         // Permitir reiniciar la página con la tecla R
@@ -1145,6 +1220,14 @@
                 location.reload();
             }
         });
+
+        // Mejorar experiencia táctil
+        document.addEventListener('touchstart', function() {}, {passive: true});
+        document.addEventListener('touchmove', function(e) {
+            if (e.scale !== 1) {
+                e.preventDefault();
+            }
+        }, {passive: false});
     </script>
 </body>
 </html>
